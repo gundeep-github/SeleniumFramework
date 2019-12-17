@@ -1,0 +1,5 @@
+Key,email,customerfirstname,customerlastname,password,day,month,year,companyDetails,addresspoint1,addresspoint2,citydetails,statedetails,additionalinfo,postcode,phone,mobile,alias
+Challenge-1,1,Charles,Princeton,1,1,1,2000,HelloFresh,Berlin,Noida,Delhi,Colorado,Qwerty,12345,12345123123,12345123123,hf
+Challenge-1,2,Olivia,Martin,2,2,2,2000,HelloFresh,Berlin,Noida,Delhi,Colorado,Qwerty,12345,12345123123,12345123123,hf
+Challenge-1,3,Rahul,Raman,3,3,3,2000,HelloFresh,Berlin,Noida,Delhi,Colorado,Qwerty,12345,12345123123,12345123123,hf
+Challenge-1,4,Michael,Martin,4,4,4,2000,HelloFresh,Berlin,Noida,Delhi,Colorado,Qwerty,12345,12345123123,12345123123,hf
