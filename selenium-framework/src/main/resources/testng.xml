@@ -2,16 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Default suite">
 <parameter name="browser" value="chrome" />
-<parameter name="Front_End_Server" value="http://automationpractice.com/index.php" />
+<!-- <parameter name="Front_End_Server" value="http://automationpractice.com/index.php" /> -->
   <test thread-count="5" verbose="2" name="Default test">
     <classes>
-      <!-- <class name="com.testcases.SignUpTest"/> -->
+       <class name="com.testcases.SignUpTest"/>
       <!-- <class name="com.testcases.LoginTest"/>
       <class name="com.testcases.successorder"/>
       <class name="com.testcases.WomenCheckoutOrderTest"/>
        -->
       
-      <class name="com.testcases.WomenCheckoutOrderTest"/>
+  <!--     <class name="com.testcases.WomenCheckoutOrderTest"/> -->
 
     </classes>
   </test> <!-- Default test -->

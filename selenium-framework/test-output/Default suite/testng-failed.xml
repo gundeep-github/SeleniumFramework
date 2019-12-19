@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <parameter name="Front_End_Server" value="http://automationpractice.com/index.php"/>
-  <parameter name="browser" value="chrome"/>
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.testcases.WomenCheckoutOrderTest">
+      <class name="com.testcases.SignUpTest">
         <methods>
+          <include name="beforeMethod"/>
           <include name="setupApplication"/>
           <include name="closeApplication"/>
-          <include name="SignUpaNewUser"/>
-          <include name="beforeMethod"/>
+          <include name="SignUpaNewUser" invocation-numbers="0"/>
+          <include name="takeScreenShotOnFailure"/>
         </methods>
-      </class> <!-- com.testcases.WomenCheckoutOrderTest -->
+      </class> <!-- com.testcases.SignUpTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

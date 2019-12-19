@@ -1,16 +1,9 @@
 package com.testcases;
 
 import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -72,14 +65,10 @@ public class SignUpTest extends TestBaseUI
 
                 if (!((key.contains((CharSequence) context.getAttribute("TestName")))))
                     continue;
-              // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login")));
-                driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-                //Thread.sleep(4000);
+           
                 homePage.click_on_SignIn();
-                Thread.sleep(4000);
                 signUp.enterNewUserEmail(email);
                 signUp.submitemail();
-                Thread.sleep(5000);                
                 signUp.selectid();
                 signUp.enterFirstName(customerfirstname);
                 signUp.enterLastName(customerlastname);
@@ -98,8 +87,7 @@ public class SignUpTest extends TestBaseUI
                 signUp.enterMobilePhone(mobile);
                 signUp.enterAddressAlias(alias);
                 signUp.clickSubmit();
-                Thread.sleep(4000);
-                driver.findElement(By.className("logout")).click();
+               // driver.findElement(By.className("logout")).click();
               
             }
         }
