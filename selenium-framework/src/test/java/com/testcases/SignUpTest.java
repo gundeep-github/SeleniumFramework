@@ -41,7 +41,7 @@ public class SignUpTest extends TestBaseUI
         String absolutePathSU = getDataPath(signUp.DATASEEDING_DATA_FILENAME,
             dataFolderDP);
         System.out.println("step 0" +absolutePathSU);
-        int count0 = UIHelper.readLines(absolutePathSU);
+        int count0 = readLines(absolutePathSU);
         System.out.println("step 1 "+count0);
         if (count0 > 0)
         {

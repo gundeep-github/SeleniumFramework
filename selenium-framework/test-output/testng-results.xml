@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="AutomationPractice for Hello Fresh" duration-ms="58507" started-at="2019-12-19T19:17:05Z" finished-at="2019-12-19T19:18:04Z">
+  <suite started-at="2019-12-19T20:10:04Z" name="Default suite" finished-at="2019-12-19T20:10:10Z" duration-ms="5785">
     <groups>
     </groups>
-    <test name="Hello Fresh Challenge" duration-ms="58507" started-at="2019-12-19T19:17:05Z" finished-at="2019-12-19T19:18:04Z">
-      <class name="com.testcases.WomenCheckoutOrderTest">
-        <test-method status="PASS" signature="setupApplication()[pri:0, instance:com.testcases.WomenCheckoutOrderTest@2286778]" name="setupApplication" is-config="true" duration-ms="12760" started-at="2019-12-19T19:17:05Z" finished-at="2019-12-19T19:17:18Z">
+    <test started-at="2019-12-19T20:10:04Z" name="Default test" finished-at="2019-12-19T20:10:10Z" duration-ms="5785">
+      <class name="com.testcases.LoginTest">
+        <test-method is-config="true" signature="setupApplication()[pri:0, instance:com.testcases.LoginTest@5223e5ee]" started-at="2019-12-19T20:10:04Z" name="setupApplication" finished-at="2019-12-19T20:10:08Z" duration-ms="3577" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupApplication -->
-        <test-method status="PASS" signature="beforeMethod(java.lang.reflect.Method, org.testng.ITestContext)[pri:0, instance:com.testcases.WomenCheckoutOrderTest@2286778]" name="beforeMethod" is-config="true" duration-ms="4977" started-at="2019-12-19T19:17:18Z" finished-at="2019-12-19T19:17:23Z">
+        <test-method signature="LoginExistingUser(org.testng.ITestContext)[pri:101, instance:com.testcases.LoginTest@5223e5ee]" started-at="2019-12-19T20:10:08Z" name="LoginExistingUser" description="To Login a existing User in the system" finished-at="2019-12-19T20:10:10Z" duration-ms="2103" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.testcases.WomenCheckoutOrderTest.SignUpaNewUser(org.testng.ITestContext) throws java.lang.Exception]]>
+                <![CDATA[org.testng.TestRunner@2a7686a7]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginExistingUser -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method, org.testng.ITestContext)[pri:0, instance:com.testcases.LoginTest@5223e5ee]" started-at="2019-12-19T20:10:08Z" name="beforeMethod" finished-at="2019-12-19T20:10:08Z" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.testcases.LoginTest.LoginExistingUser(org.testng.ITestContext) throws java.lang.Exception]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[org.testng.TestRunner@3116c353]]>
+                <![CDATA[org.testng.TestRunner@2a7686a7]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.WomenCheckoutOrderTest@2286778]" name="SignUpaNewUser" duration-ms="35567" started-at="2019-12-19T19:17:23Z" description="To Login a existing User in the system" finished-at="2019-12-19T19:17:58Z">
+        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:com.testcases.LoginTest@5223e5ee]" started-at="2019-12-19T20:10:10Z" name="takeScreenShotOnFailure" finished-at="2019-12-19T20:10:10Z" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@3116c353]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SignUpaNewUser -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:com.testcases.WomenCheckoutOrderTest@2286778]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2019-12-19T19:17:58Z" finished-at="2019-12-19T19:17:58Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=SignUpaNewUser status=SUCCESS method=WomenCheckoutOrderTest.SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.WomenCheckoutOrderTest@2286778] output={null}]]]>
+                <![CDATA[[TestResult name=LoginExistingUser status=SUCCESS method=LoginTest.LoginExistingUser(org.testng.ITestContext)[pri:101, instance:com.testcases.LoginTest@5223e5ee] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="closeApplication()[pri:0, instance:com.testcases.WomenCheckoutOrderTest@2286778]" name="closeApplication" is-config="true" duration-ms="5116" started-at="2019-12-19T19:17:58Z" finished-at="2019-12-19T19:18:04Z">
+        <test-method is-config="true" signature="closeApplication()[pri:0, instance:com.testcases.LoginTest@5223e5ee]" started-at="2019-12-19T20:10:10Z" name="closeApplication" finished-at="2019-12-19T20:10:10Z" duration-ms="92" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeApplication -->
-      </class> <!-- com.testcases.WomenCheckoutOrderTest -->
-    </test> <!-- Hello Fresh Challenge -->
-  </suite> <!-- AutomationPractice for Hello Fresh -->
+      </class> <!-- com.testcases.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
