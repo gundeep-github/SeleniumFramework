@@ -74,7 +74,7 @@ public class TestBaseUI {
 	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 	    if (testResult.getStatus() == ITestResult.FAILURE) { 
 	        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
-	        FileUtils.copyFile(scrFile, new File("failedScreenshots\\" + testResult.getName() + "-"
+	        FileUtils.copyFile(scrFile, new File("./failedScreenshots/" + testResult.getName() + "-"
 	                + Arrays.toString(testResult.getParameters()) +  ".jpg"));
 	    } 
 	}

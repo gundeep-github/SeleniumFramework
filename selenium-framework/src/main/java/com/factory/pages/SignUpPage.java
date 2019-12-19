@@ -244,5 +244,4 @@ public class SignUpPage extends BasePage
     {
         submitAccount.click();
     }        
-        
 }

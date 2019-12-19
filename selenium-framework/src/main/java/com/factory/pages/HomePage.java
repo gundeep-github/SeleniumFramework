@@ -22,14 +22,9 @@ public class HomePage extends BasePage
      *       Questions and its validations
      */
     
-    public static final String DATASEEDING_DATA_FILENAME ="";
     @FindBy(how=How.CLASS_NAME,using="login")
     public WebElement signInButton;
     
-    public WebElement getsigninButton()
-    {
-        return signInButton;
-    }
     public void click_on_SignIn()
     {
         try {
@@ -43,4 +38,6 @@ public class HomePage extends BasePage
 
         }
     }
+    
+    
 }

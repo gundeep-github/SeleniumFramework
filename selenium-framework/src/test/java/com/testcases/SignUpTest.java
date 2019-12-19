@@ -3,11 +3,15 @@ package com.testcases;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.factory.pages.DashboardPage;
 import com.factory.pages.HomePage;
 import com.factory.pages.SignUpPage;
 import com.tests.constant.Constant;
@@ -32,6 +36,8 @@ public class SignUpTest extends TestBaseUI
         // Step 2 : page factory
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         SignUpPage signUp = PageFactory.initElements(driver, SignUpPage.class);
+        DashboardPage dashboard = PageFactory.initElements(driver, DashboardPage.class);
+        
         String absolutePathSU = getDataPath(signUp.DATASEEDING_DATA_FILENAME,
             dataFolderDP);
         System.out.println("step 0" +absolutePathSU);
@@ -65,7 +71,6 @@ public class SignUpTest extends TestBaseUI
 
                 if (!((key.contains((CharSequence) context.getAttribute("TestName")))))
                     continue;
-           
                 homePage.click_on_SignIn();
                 signUp.enterNewUserEmail(email);
                 signUp.submitemail();
@@ -87,8 +92,10 @@ public class SignUpTest extends TestBaseUI
                 signUp.enterMobilePhone(mobile);
                 signUp.enterAddressAlias(alias);
                 signUp.clickSubmit();
-               // driver.findElement(By.className("logout")).click();
-              
+                
+                Assert.assertTrue(driver.getCurrentUrl().contains("?controller=my-account"));
+                Assert.assertEquals(dashboard.getUserName(),customerfirstname+ " "+customerlastname);
+                Assert.assertTrue(dashboard.logOut.isDisplayed());
             }
         }
     }

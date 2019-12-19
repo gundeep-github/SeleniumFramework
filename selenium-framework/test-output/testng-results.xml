@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-12-19T15:18:35Z" name="Default suite" finished-at="2019-12-19T15:19:05Z" duration-ms="30031">
+  <suite started-at="2019-12-19T18:00:50Z" name="Default suite" finished-at="2019-12-19T18:00:59Z" duration-ms="8259">
     <groups>
     </groups>
-    <test started-at="2019-12-19T15:18:35Z" name="Default test" finished-at="2019-12-19T15:19:05Z" duration-ms="30031">
+    <test started-at="2019-12-19T18:00:50Z" name="Default test" finished-at="2019-12-19T18:00:59Z" duration-ms="8259">
       <class name="com.testcases.SignUpTest">
-        <test-method is-config="true" signature="setupApplication()[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T15:18:35Z" name="setupApplication" finished-at="2019-12-19T15:18:40Z" duration-ms="4655" status="PASS">
+        <test-method is-config="true" signature="setupApplication()[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T18:00:50Z" name="setupApplication" finished-at="2019-12-19T18:00:54Z" duration-ms="3307" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupApplication -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method, org.testng.ITestContext)[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T15:18:40Z" name="beforeMethod" finished-at="2019-12-19T15:18:40Z" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method, org.testng.ITestContext)[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T18:00:54Z" name="beforeMethod" finished-at="2019-12-19T18:00:54Z" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -27,7 +27,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T15:18:40Z" name="SignUpaNewUser" description="To sign up a New User in the system" finished-at="2019-12-19T15:19:05Z" duration-ms="24741" status="FAIL">
+        <test-method signature="SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T18:00:54Z" name="SignUpaNewUser" description="To sign up a New User in the system" finished-at="2019-12-19T18:00:59Z" duration-ms="4844" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -35,86 +35,21 @@
               </value>
             </param>
           </params>
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.id: email_create (tried for 20 second(s) with 500 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: email_create (tried for 20 second(s) with 500 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-at com.factory.pages.SignUpPage.enterNewUserEmail(SignUpPage.java:127)
-at com.testcases.SignUpTest.SignUpaNewUser(SignUpTest.java:70)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#email_create"}
-  (Session info: chrome=79.0.3945.88)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'Gundeeps-MacBook-Pro.local', ip: 'fe80:0:0:0:1406:c0c4:47d6:e9b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.14.5', java.version: '13.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.88, chrome: {chromedriverVersion: 78.0.3904.105 (60e2d8774a81..., userDataDir: /var/folders/t5/9v8qlqm562b...}, goog:chromeOptions: {debuggerAddress: localhost:54496}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: e4af47846099c457758522cae12149c1
-*** Element info: {Using=id, value=email_create}
-at jdk.internal.reflect.GeneratedConstructorAccessor15.newInstance(Unknown Source)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:372)
-at org.openqa.selenium.By$ById.findElement(By.java:188)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-... 27 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SignUpaNewUser -->
-        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T15:19:05Z" name="takeScreenShotOnFailure" finished-at="2019-12-19T15:19:05Z" duration-ms="533" status="PASS">
+        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T18:00:59Z" name="takeScreenShotOnFailure" finished-at="2019-12-19T18:00:59Z" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=SignUpaNewUser status=FAILURE method=SignUpTest.SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.SignUpTest@36c88a32] output={null}]]]>
+                <![CDATA[[TestResult name=SignUpaNewUser status=SUCCESS method=SignUpTest.SignUpaNewUser(org.testng.ITestContext)[pri:101, instance:com.testcases.SignUpTest@36c88a32] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method is-config="true" signature="closeApplication()[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T15:19:05Z" name="closeApplication" finished-at="2019-12-19T15:19:05Z" duration-ms="89" status="PASS">
+        <test-method is-config="true" signature="closeApplication()[pri:0, instance:com.testcases.SignUpTest@36c88a32]" started-at="2019-12-19T18:00:59Z" name="closeApplication" finished-at="2019-12-19T18:00:59Z" duration-ms="95" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeApplication -->

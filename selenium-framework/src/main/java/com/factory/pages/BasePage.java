@@ -1,7 +1,9 @@
 package com.factory.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
@@ -14,5 +16,4 @@ public abstract class BasePage {
 		
 	    wait = new WebDriverWait(driver,20);
 	}
-
 }
