@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -41,14 +42,13 @@ public class WomenCheckoutOrderTest extends TestBaseUI
     
     @Test(testName = "Challenge-1", description = "To Login a existing User in the system", priority = 101)
     public void SignUpaNewUser(ITestContext context) throws Exception
-    {
-        int i = 1;      
+    {    
         WomenStorePage womenStorePage = PageFactory.initElements(driver, WomenStorePage.class);
         String absolutePathWSP = getDataPath(womenStorePage.DATASEEDING_DATA_FILENAME,
             dataFolderDP);
        
         System.out.println("step 0" +absolutePathWSP);
-        int count0 = UIHelper.readLines(absolutePathWSP);
+        int count0 = readLines(absolutePathWSP);
         System.out.println("step 1 "+count0);
         if (count0 > 0)
         {
@@ -74,6 +74,12 @@ public class WomenCheckoutOrderTest extends TestBaseUI
                 womenStorePage.clickonbtn_process_carrier();
                 womenStorePage.clickonpayByBankwire();
                 womenStorePage.clickonbtn_confirm_order();
+                
+                Assert.assertEquals("ORDER CONFIRMATION", womenStorePage.confirmHeader());
+                Assert.assertTrue(womenStorePage.confirmShippingIsDisplayed());
+                Assert.assertTrue(womenStorePage.confirmpaymentIsDisplayed());
+                Assert.assertTrue(womenStorePage.confirmOrderIsComplete().contains("Your order on My Store is complete."));
+                Assert.assertTrue(driver.getCurrentUrl().contains("controller=order-confirmation"));
 
             }
         }

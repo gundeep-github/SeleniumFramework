@@ -1,31 +1,24 @@
 package com.factory.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.tests.support.TestBaseUI;
 
-public class WomenStorePage extends TestBaseUI
+public class WomenStorePage extends BasePage
 {
-    public WebDriverWait wait;
-    public WomenStorePage()
-    {
-        this.wait = new WebDriverWait(driver,5);
-    }
-    
-    /*
-    WebDriver driver;
     public WomenStorePage(WebDriver driver)
     {
-        this.driver=driver;
+        super(driver);
     }
-    */
     
     public static final String DATASEEDING_DATA_FILENAME ="WomenStorePage";
 
@@ -78,23 +71,23 @@ public class WomenStorePage extends TestBaseUI
     WebElement btn_confirm_order;
 
     // verification
-
-    @FindBy(how = How.CSS, using = "h1")
-    WebElement lbl_heading;
-
-    @FindBy(how = How.XPATH, using = "//li[@class='step_done step_done_last four']")
-    WebElement lbl_shipping;
-
-    @FindBy(how = How.XPATH, using = "//li[@id='step_end' and @class='step_current last']")
-    WebElement lbl_payment;
     
-    @FindBy(how = How.XPATH, using = "//*[@class='cheque-indent']/strong")
-    WebElement verifyOrderComplete;
+    @FindBy(how=How.CSS, using = "h1")
+    WebElement orderconfirmationheader;
     
+    @FindBy(how=How.XPATH, using = "//li[@class='step_done step_done_last four']")
+    WebElement shippingIsDisplayed;
+    
+    @FindBy(how=How.XPATH, using = "//li[@id='step_end' and @class='step_current last']")
+    WebElement paymentIsDisplayed;
+    
+    @FindBy(how=How.XPATH, using= "//*[@class='cheque-indent']/strong")
+    WebElement orderCompletedCheck;
     
            
     public void clickonWomenoption()
     {
+        wait.until(ExpectedConditions.visibilityOf(goToWomenSelection));
         goToWomenSelection.click();
     }
     
@@ -117,16 +110,13 @@ public class WomenStorePage extends TestBaseUI
         
         else
         {
-            Reporter.log("Incorrect Dress Name");
+            Reporter.log("Check Dress Options");
         }
         
-        
-        //if(dressName.contains(s))
     }
     public void clickonfadedShortSleeve()
     {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        // WebDriverWait wait = new WebDriverWait(driver, 15);
         js.executeScript("arguments[0].scrollIntoView();", fadedShortSleeve); 
         fadedShortSleeve.click();
     }
@@ -168,42 +158,71 @@ public class WomenStorePage extends TestBaseUI
     {
         //JavascriptExecutor js = (JavascriptExecutor) driver;
         //js.executeScript("arguments[0].scrollIntoView();", clickOnSubmit); 
+        wait.until(ExpectedConditions.visibilityOf(clickOnSubmit));
         clickOnSubmit.click();
     }
     
     public void clickoncheckOutButton()
     {
+        wait.until(ExpectedConditions.visibilityOf(checkoutButton));
         checkoutButton.click();
     }
     
     public void clickonproceedCheckoutButton()
     {
+        wait.until(ExpectedConditions.visibilityOf(proceedCheckoutButton));
         proceedCheckoutButton.click();
     }
     
     public void clickonbtn_process_address()
     {
+        wait.until(ExpectedConditions.visibilityOf(btn_process_address));
         btn_process_address.click();
     }
     
     public void clickonrbn_accept_term()
     {
+        wait.until(ExpectedConditions.visibilityOf(rbn_accept_term));
         rbn_accept_term.click();
     }
     
     public void clickonbtn_process_carrier()
     {
+        wait.until(ExpectedConditions.visibilityOf(btn_process_carrier));
         btn_process_carrier.click();
     }
     
     public void clickonpayByBankwire()
     {
+        wait.until(ExpectedConditions.visibilityOf(payByBankwire));
         payByBankwire.click();
     }
     
     public void clickonbtn_confirm_order()
     {
+        wait.until(ExpectedConditions.visibilityOf(btn_confirm_order));
         btn_confirm_order.click();
     }
+    
+    public String confirmHeader()
+    {
+        return orderconfirmationheader.getText();
+    }
+    
+    public boolean confirmShippingIsDisplayed()
+    {
+        return shippingIsDisplayed.isDisplayed();
+    }
+    
+    public boolean confirmpaymentIsDisplayed()
+    {
+        return paymentIsDisplayed.isDisplayed();
+    }
+    
+    public String confirmOrderIsComplete()
+    {
+        return orderCompletedCheck.getText();
+    }
+    
     
 }
