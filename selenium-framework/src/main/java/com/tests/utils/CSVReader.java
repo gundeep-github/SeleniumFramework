@@ -18,14 +18,7 @@ public class CSVReader {
 	static final Logger logger = Logger.getLogger(CSVReader.class);
 	
 	private static Map<String, List<String>> contentCache = new HashMap<>();
-	
-	private static final String DATE_TYPE_START_WITH="{{{";
-	private static final String DATE_TYPE_END_WITH="}}}";
-	
-	//private static final DateParser DATE_PARSER = new DateParser();
-	
-	private static final String IS_DATE_TYPE_PATTERN="(\\{{3})(.*)(\\}{3})";
-	
+		
 	private static final String ID_COLUMN = "Key";
 	
 	private CSVReader(){
@@ -34,11 +27,8 @@ public class CSVReader {
 	
 	/**
 	 * Read the whole content of given csv file 
-	 * 
 	 * @param fileName: String
 	 * @return The whole content of given csv file
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
 	public static List<Map<String, String>> readCSV(String fileName) {
 		
@@ -54,39 +44,7 @@ public class CSVReader {
 		
 		return readCSV(fileName, 1, csvRowCount);
 	}
-	
-	/**
-	 * Check if it is a date pattern 
-	 * 
-	 * @param columnValue: String
-	 * @return true or false
-	 */
-	private static boolean isDatePattern(String columnValue) {
 
-		int from = columnValue.indexOf(DATE_TYPE_START_WITH);
-		int to = columnValue.indexOf(DATE_TYPE_END_WITH);
-
-		return (from >= 0) && (to > from);
-	}
-	
-	/**
-	 * Get the inner date expression
-	 * 
-	 * @param columnValue: String
-	 * @return the expression in String
-	 */
-	private static String getInnnerDateExpresssion(String columnValue) {
-
-		Pattern datePattern = Pattern.compile(IS_DATE_TYPE_PATTERN);
-
-		Matcher matcher = datePattern.matcher(columnValue);
-
-		matcher.find();
-
-		return matcher.group(2).replaceAll(" ", "");
-
-	}
-	
 	/**
 	 * Read lines from relative path
 	 * 
@@ -116,7 +74,6 @@ public class CSVReader {
 			reader.close();
 		} catch (Exception e) {
 			logger.error("IOException occured when get absolute path of " + relativePath, e);
-			//throw new KronosCoreCommonException("IOException occured when get absolute path of " + relativePath, e);
 		} 
 		contentCache.put(relativePath, lines);
 		return lines;
@@ -129,17 +86,14 @@ public class CSVReader {
 	 * @param startRow: int
 	 * @param endRow: int
 	 * @return The line content from startRow to endRow
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
-	public static List<Map<String, String>> readCSV(String fileName, int startRow, int endRow) //throws KronosCoreCommonException 
+	public static List<Map<String, String>> readCSV(String fileName, int startRow, int endRow)
 	{
 		List<Map<String, String>> content = new ArrayList<>();
 		
 		if(startRow < 0 || endRow < 0 || (startRow > endRow)) {
 			String message = "Parameter error, startRow is: " + startRow + ", endRow is:" + endRow;
 			logger.error(message);
-			//throw new KronosCoreCommonException(message);
 		}
 		
 		for(int i = startRow; i <= endRow; i++) {
@@ -155,10 +109,8 @@ public class CSVReader {
 	 * @param fileName: String
 	 * @param row row number of csv file, start from 1
 	 * @return Map which its keyset contains headers and valueset contains given row's values.
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
-	public static Map<String, String> readCSV(String fileName, int row) //throws KronosCoreCommonException 
+	public static Map<String, String> readCSV(String fileName, int row)
 	{
 		Map<String, String> lineMap = null;
 		String line = null;
@@ -166,7 +118,6 @@ public class CSVReader {
 		if(row < 0) {
 			String message = "Row can not be negative, row: " + row;
 			logger.error(message);
-			//throw new KronosCoreCommonException(message);
 		}
 		
 		List<String> lines = readLines(fileName);
@@ -176,13 +127,11 @@ public class CSVReader {
 		if(row >= lines.size()) {
 			String message = "Only " + lines.size() + " in csv file: " + fileName + ", but finding row: " + row;
 			logger.error(message);
-			//throw new KronosCoreCommonException(message);
 		}
 		line = lines.get(row);
 		if(line == null) {
 			String message = "Row: " + row + " does not exist in csv file: " + fileName;
 			logger.error(message);
-			//throw new KronosCoreCommonException(message);
 		}
 		
 		String[] columns = line.split(",", -1);
@@ -190,19 +139,12 @@ public class CSVReader {
 			String message = "CSV file: " + fileName + " is not valid, header column equals "
 					+ header.length + ", row column equals " + columns.length + " on row: " + row;
 			logger.error(message);
-			//throw new KronosCoreCommonException(message);
 		}
 		
 		lineMap = new LinkedHashMap<>();
 		for(int i = 0; i < header.length; i++) {
-			String value = replaceTwoVerticalLineToComma(columns[i]);
-			/*
-			if (isDatePattern(value)) {
-				String innerDateExp = getInnnerDateExpresssion(value);
-				lineMap.put(header[i], value.replace(DATE_TYPE_START_WITH + innerDateExp + DATE_TYPE_END_WITH , DATE_PARSER.parseDatePattern(innerDateExp)));
-			}*/ //else {
+			String value = replaceTwoVerticalLineToComma(columns[i]);	
 				lineMap.put(header[i], value);
-			//}
 		}
 		
 		return lineMap;
@@ -214,10 +156,8 @@ public class CSVReader {
 	 * @param fileName: String
 	 * @param row row number of csv file, start from 1
 	 * @return Map which its keyset contains headers and valueset contains given row's values.
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
-	public static Map<String, Object> readPayloadTemplate(String fileName, int row) //throws KronosCoreCommonException 
+	public static Map<String, Object> readPayloadTemplate(String fileName, int row)
 	{
 		return convertMap( readCSV(fileName,row));
 	}
@@ -228,23 +168,20 @@ public class CSVReader {
 	 * @param fileName csv file name.
 	 * @param idValue value to be find in "Key" column.
 	 * @return Map<String, String> of the row content, <b>null</b> if not found.
-	 * @throws KronosCoreCommonException Core Common Exception
 	 */
-	public static Map<String, String> readCSV(String fileName, String idValue) //throws KronosCoreCommonException 
+	public static Map<String, String> readCSV(String fileName, String idValue)
 	{ 
 		String errMsg = "";
 
 		if (fileName == null || idValue == null) {
 			errMsg = "Parameter error, fileName is: " + fileName + ", idValue: " + idValue;
 			logger.info(errMsg);
-			//throw new KronosCoreCommonException(errMsg);
 		}
 		
 		List<Map<String, String>> rows = readCSV(fileName);
 		if (rows.isEmpty()) {
 			errMsg = "CSV file's content is empty, fileName is: " + fileName;
 			logger.info(errMsg);
-			//throw new KronosCoreCommonException(errMsg);
 		}
 		
 		Map<String, String> rowFound = null;
@@ -259,7 +196,6 @@ public class CSVReader {
 		if (rowFound == null) {
 			errMsg = idValue + " not found as a Key in " + "CSV file: " + fileName;
 			logger.info(errMsg);
-			//throw new KronosCoreCommonException(errMsg);
 		}
 		return rowFound;
 	}
@@ -270,10 +206,8 @@ public class CSVReader {
 	 * @param fileName csv file name.
 	 * @param idValue value to find in "Key" column.
 	 * @return List<Map<String, String>> of the row content
-	 * @throws KronosCoreCommonException
 	 */
 	public static List<Map<String, String>> readCSVRows(String fileName, String idValue)
-			//throws KronosCoreCommonException 
 	{
 		return readCSVRows(fileName, idValue, true);
 	}
@@ -286,24 +220,20 @@ public class CSVReader {
 	 * @param idValue value to find in "Key" column.
 	 * @param matchByExactId boolean to find by exact id match or containing an id
 	 * @return List<Map<String, String>> of the row content
-	 * @throws KronosCoreCommonException
 	 */
 	public static List<Map<String, String>> readCSVRows(String fileName, String idValue, boolean matchByExactId)
-			//throws KronosCoreCommonException 
 	{
 		String errMsg = "";
 
 		if (fileName == null || idValue == null) {
 			errMsg = "Parameter error, fileName is: " + fileName + ", idValue: " + idValue;
 			logger.info(errMsg);
-			//throw new KronosCoreCommonException(errMsg);
 		}
 
 		List<Map<String, String>> rows = readCSV(fileName);
 		if (rows.isEmpty()) {
 			errMsg = "CSV file's content is empty, fileName is: " + fileName;
 			logger.info(errMsg);
-			//throw new KronosCoreCommonException(errMsg);
 		}
 
 		List<Map<String, String>> reqRows = new ArrayList<Map<String, String>>();
@@ -330,9 +260,8 @@ public class CSVReader {
 	 * @param fileName csv file name.
 	 * @param idValue value to be find in "Key" column.
 	 * @return Map<String, Object> of the row content, <b>null</b> if not found.
-	 * @throws KronosCoreCommonException Core Common Exception
 	 */
-	public static Map<String, Object> readPayloadTemplate(String fileName, String idValue) //throws KronosCoreCommonException 
+	public static Map<String, Object> readPayloadTemplate(String fileName, String idValue)
 	{ 
 		return convertMap( readCSV(fileName,idValue));
 	}
@@ -341,10 +270,8 @@ public class CSVReader {
 	 * Read the CSV file for all the rows
 	 * @param fileName: String
 	 * @return List<Map<String,Object>> CSV data for all the rows
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
-	public static List<Map<String, Object>> readPayloadTemplate(String fileName) //throws KronosCoreCommonException 
+	public static List<Map<String, Object>> readPayloadTemplate(String fileName)
 	{
 		List<Map<String, String>> temp = readCSV(fileName);
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
@@ -360,10 +287,8 @@ public class CSVReader {
 	 * @param startRow: int
 	 * @param endRow: int
 	 * @return List<Map<String,Object>> CSV data from startRow to endRow 
-	 * @throws KronosCoreCommonException
-	 * 		: customized kronos core common exception
 	 */
-	public static List<Map<String, Object>> readPayloadTemplate(String fileName, int startRow, int endRow) //throws KronosCoreCommonException 
+	public static List<Map<String, Object>> readPayloadTemplate(String fileName, int startRow, int endRow) 
 	{
 		List<Map<String, String>> temp = readCSV(fileName, startRow, endRow);
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
