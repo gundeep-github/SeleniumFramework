@@ -8,7 +8,7 @@
 		<listener
 			class-name="com.tests.ExtentReportListener.ExtentReporterNG" />
 	</listeners>
-	<test name="Sign Up Test">
+<!-- 	<test name="Sign Up Test">
 		<classes>
 			<class name="com.testcases.SignUpTest" />
 		</classes>
@@ -19,7 +19,7 @@
 			<class name="com.testcases.LoginTest" />
 
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="Order Test">
 		<classes>

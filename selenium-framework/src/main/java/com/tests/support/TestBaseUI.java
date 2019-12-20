@@ -55,7 +55,7 @@ public class TestBaseUI
         if (browser.equalsIgnoreCase("chrome"))
         {
             logger.info("====Browser Session Started in Chrome====");
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriverv79.exe");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.get(prop.getProperty("BASEURL"));
@@ -65,7 +65,7 @@ public class TestBaseUI
         else if (browser.equalsIgnoreCase("firefox"))
         {
             logger.info("====Browser Session Started in firefox====");
-            System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver");
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
             driver.get(prop.getProperty("BASEURL"));
