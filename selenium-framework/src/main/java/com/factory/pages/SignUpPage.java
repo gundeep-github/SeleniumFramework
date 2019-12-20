@@ -2,8 +2,7 @@ package com.factory.pages;
 
 import java.util.Date;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.tests.support.TestBaseUI;
 
 public class SignUpPage extends BasePage
 {
@@ -23,15 +19,17 @@ public class SignUpPage extends BasePage
     {
         super(driver);
     }
-    
-    /* Contains options present on Sign Up Page
+ 
+    /**
+     * Contains options present on Sign Up Page
      * 1. Enter Email Address
      * 2. Fields which needs to be filled to create a user in the system
      * Note: There could have many other functions to verify the current page
      *       but implementation has been done keeping in mind the Hello Fresh Challenge
      *       Questions and its validations
      */
-    public static final String DATASEEDING_DATA_FILENAME ="SignUpPage";
+
+    public final String DATASEEDING_DATA_FILENAME ="SignUpPage";
     @FindBy(how=How.ID,using="email_create")
     WebElement create_email;
     

@@ -18,6 +18,14 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+/**
+ * Generate Extent Report for pass/fail status of test cases
+ * 
+ * @author rahul.raman
+ * @result Generates report for pass and fail test cases and
+ * logs for failed test cases
+ */
+
 public class ExtentReporterNG implements IReporter {
 	private ExtentReports extent;
 

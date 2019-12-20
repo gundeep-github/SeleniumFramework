@@ -3,7 +3,6 @@ package com.testcases;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -17,39 +16,43 @@ import com.factory.pages.SignUpPage;
 import com.tests.constant.Constant;
 import com.tests.support.TestBaseUI;
 import com.tests.utils.CSVReader;
-import com.tests.utils.UIHelper;
+
+/**
+ * Test the signUp functionality
+ * 
+ * @author rahul.raman
+ * @steps 1.Set the context 2.Initialize the Page Factory elements 3.Read
+ *        required Data from csv 4.Complete Test Steps 6.Validate the Test
+ */
 
 public class SignUpTest extends TestBaseUI
 {
     @BeforeMethod
     public void beforeMethod(Method method, ITestContext context)
     {
+        logger.info("Setting context");
         Test test = method.getAnnotation(Test.class);
         context.setAttribute("TestName", test.testName());
     }
-    
+
     @Test(testName = "Challenge-1", description = "To sign up a New User in the system", priority = 101)
     public void SignUpaNewUser(ITestContext context) throws Exception
     {
-        int i = 1;
-
-        // Step 2 : page factory
+        logger.info("initializing Factory Elements");
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         SignUpPage signUp = PageFactory.initElements(driver, SignUpPage.class);
         DashboardPage dashboard = PageFactory.initElements(driver, DashboardPage.class);
-        
-        String absolutePathSU = getDataPath(signUp.DATASEEDING_DATA_FILENAME,
-            dataFolderDP);
-        System.out.println("step 0" +absolutePathSU);
+
+        String absolutePathSU = getDataPath(signUp.DATASEEDING_DATA_FILENAME, dataFolderDP);
         int count0 = readLines(absolutePathSU);
-        System.out.println("step 1 "+count0);
+        logger.info("Reading lines of Sign Up csv");
         if (count0 > 0)
         {
             List<Map<String, Object>> rows = CSVReader.readResourceCSV(absolutePathSU);
-            System.out.println("payload content---------");
-            System.out.println(rows);
             for (int row = 0; row < rows.size(); row++)
             {
+                // Given
+                logger.info("Fetching New User Data from SignUp csv");
                 String key = rows.get(row).get(Constant.KEY.getValue()).toString();
                 String email = rows.get(row).get(Constant.EMAIL.getValue()).toString();
                 String customerfirstname = rows.get(row).get(Constant.FIRSTNAME.getValue()).toString();
@@ -69,9 +72,12 @@ public class SignUpTest extends TestBaseUI
                 String mobile = rows.get(row).get(Constant.MOBILE.getValue()).toString();
                 String alias = rows.get(row).get(Constant.ALIAS.getValue()).toString();
 
-                if (!((key.contains((CharSequence) context.getAttribute("TestName")))))
-                    continue;
+                if (!((key.contains((CharSequence) context.getAttribute("TestName"))))) continue;
+                logger.info("Sign Up Test Started");
                 homePage.click_on_SignIn();
+                logger.info("Entering values of new user");
+
+                // When
                 signUp.enterNewUserEmail(email);
                 signUp.submitemail();
                 signUp.selectid();
@@ -92,9 +98,12 @@ public class SignUpTest extends TestBaseUI
                 signUp.enterMobilePhone(mobile);
                 signUp.enterAddressAlias(alias);
                 signUp.clickSubmit();
-                
+
+                // Then
+                logger.info("Validating Test case");
+
                 Assert.assertTrue(driver.getCurrentUrl().contains("?controller=my-account"));
-                Assert.assertEquals(dashboard.getUserName(),customerfirstname+ " "+customerlastname);
+                Assert.assertEquals(dashboard.getUserName(), customerfirstname + " " + customerlastname);
                 Assert.assertTrue(dashboard.logOut.isDisplayed());
             }
         }

@@ -23,13 +23,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import com.tests.constant.Constant;
-import com.tests.utils.UIHelper;
 
 public class TestBaseUI
 {
 
     protected final static Logger logger = Logger.getLogger(TestBaseUI.class);
-    public static WebDriver driver;
+    //public static WebDriver driver;
+    public WebDriver driver;
     public WebDriverWait wait;
     public String dataFolderDP = "";
     protected static Properties prop;
@@ -76,7 +76,7 @@ public class TestBaseUI
 
     public String getDataPath(String dataseedingSchemaDataFileName, String dataFolder)
     {
-        logger.info("Fetching the path of the CXV to read");
+        logger.info("Fetching the path of the CSV to read");
         String absolutePath = Constant.DATAFILE_BASE_PATH.getValue() + Constant.FORWARD_SLASH.getValue() + dataFolder
             + Constant.FORWARD_SLASH.getValue() + dataseedingSchemaDataFileName + Constant.FORWARD_SLASH.getValue()
             + dataseedingSchemaDataFileName + Constant.CSV.getValue();
@@ -93,13 +93,13 @@ public class TestBaseUI
         if ("".equals(relativePath))
         {
             String message = "relativePath can't be empty.";
-            // logger.info(message);
+            logger.info(message);
         }
 
         try
         {
             reader = new BufferedReader(
-                new InputStreamReader(UIHelper.class.getClassLoader().getResourceAsStream(relativePath)));
+                new InputStreamReader(TestBaseUI.class.getClassLoader().getResourceAsStream(relativePath)));
 
             while ((line = reader.readLine()) != null)
             {
@@ -109,7 +109,7 @@ public class TestBaseUI
         }
         catch (Exception e)
         {
-            logger.error("IOException occured when get absolute path of " + relativePath, e);
+            logger.error("IOException occured when tryinh to get absolute path of " + relativePath, e);
         }
         return count - 1;
     }
@@ -119,6 +119,7 @@ public class TestBaseUI
     {
         if (testResult.getStatus() == ITestResult.FAILURE)
         {
+            logger.info("Taking failed test cases screenshot");
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile, new File("./failedScreenshots/" + testResult.getName() + "-"
                 + Arrays.toString(testResult.getParameters()) + ".jpg"));

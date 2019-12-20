@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 
@@ -146,19 +147,7 @@ public class CSVReader {
 		
 		return lineMap;
 	}
-	
-	/**
-	 * Read the single line map of given csv file by given row number
-	 * 
-	 * @param fileName: String
-	 * @param row row number of csv file, start from 1
-	 * @return Map which its keyset contains headers and valueset contains given row's values.
-	 */
-	public static Map<String, Object> readResourceCSV(String fileName, int row)
-	{
-		return convertMap( readCSV(fileName,row));
-	}
-	
+
 	/**
 	 * Read single line map of csv file by given id value.
 	 * 
@@ -196,73 +185,6 @@ public class CSVReader {
 		}
 		return rowFound;
 	}
-	
-	/**
-	 * Read multi line map of csv file by given id value.
-	 * 
-	 * @param fileName csv file name.
-	 * @param idValue value to find in "Key" column.
-	 * @return List<Map<String, String>> of the row content
-	 */
-	public static List<Map<String, String>> readCSVRows(String fileName, String idValue)
-	{
-		return readCSVRows(fileName, idValue, true);
-	}
-
-	/**
-	 * Read multi line map of csv file by given id value, with option to have it use
-	 * exact match. If exact match if false, it will use contains.
-	 * 
-	 * @param fileName csv file name.
-	 * @param idValue value to find in "Key" column.
-	 * @param matchByExactId boolean to find by exact id match or containing an id
-	 * @return List<Map<String, String>> of the row content
-	 */
-	public static List<Map<String, String>> readCSVRows(String fileName, String idValue, boolean matchByExactId)
-	{
-		String errMsg = "";
-
-		if (fileName == null || idValue == null) {
-			errMsg = "Parameter error, fileName is: " + fileName + ", idValue: " + idValue;
-			logger.info(errMsg);
-		}
-
-		List<Map<String, String>> rows = readCSV(fileName);
-		if (rows.isEmpty()) {
-			errMsg = "CSV file's content is empty, fileName is: " + fileName;
-			logger.info(errMsg);
-		}
-
-		List<Map<String, String>> reqRows = new ArrayList<Map<String, String>>();
-		for (Map<String, String> row : rows) {
-			if (matchByExactId) {
-				if (idValue.equals(row.get(ID_COLUMN)))
-					reqRows.add(row);
-			} else {
-				if (row.get(ID_COLUMN).contains(idValue))
-					reqRows.add(row);
-			}
-		}
-
-		String findBy = matchByExactId ? "equals" : "contains";
-		if (reqRows.size() == 0)
-			logger.info(String.format("Cannot find rows where the key %s the id %s in %s.", findBy, idValue, fileName));
-
-		return reqRows;
-	}
-	
-	/**
-	 * Read single line map of csv file by given id value.
-	 * 
-	 * @param fileName csv file name.
-	 * @param idValue value to be find in "Key" column.
-	 * @return Map<String, Object> of the row content, <b>null</b> if not found.
-	 */
-	public static Map<String, Object> readResourceCSV(String fileName, String idValue)
-	{ 
-		return convertMap( readCSV(fileName,idValue));
-	}
-	
 	/**
 	 * Read the CSV file for all the rows
 	 * @param fileName: String
@@ -275,23 +197,7 @@ public class CSVReader {
 		temp.forEach(k -> result.add(convertMap(k)));
 		return result;
 	}
-	
 
-	/**
-	 * Read the CSV file from startRow to endRow
-	 * 
-	 * @param fileName: String
-	 * @param startRow: int
-	 * @param endRow: int
-	 * @return List<Map<String,Object>> CSV data from startRow to endRow 
-	 */
-	public static List<Map<String, Object>> readResourceCSV(String fileName, int startRow, int endRow) 
-	{
-		List<Map<String, String>> temp = readCSV(fileName, startRow, endRow);
-		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
-		temp.forEach(k -> result.add(convertMap(k)));
-		return result;
-	}
 
 	/**
 	 * Converts a map of String,String type to map of String, Object type

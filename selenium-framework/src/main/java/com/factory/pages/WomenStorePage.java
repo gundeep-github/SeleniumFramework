@@ -1,6 +1,6 @@
 package com.factory.pages;
 
-import org.apache.log4j.Logger;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,10 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
-import com.tests.support.TestBaseUI;
+/**
+ * Contains options present on to order women product
+ * Note: There could have many other functions to verify the current page
+ *       but implementation has been done keeping in mind the Hello Fresh Challenge
+ *       Questions and its validations
+ */
 
 public class WomenStorePage extends BasePage
 {
@@ -160,8 +164,6 @@ public class WomenStorePage extends BasePage
 
     public void click_on_Submit()
     {
-        // JavascriptExecutor js = (JavascriptExecutor) driver;
-        // js.executeScript("arguments[0].scrollIntoView();", clickOnSubmit);
         wait.until(ExpectedConditions.visibilityOf(clickOnSubmit));
         clickOnSubmit.click();
     }

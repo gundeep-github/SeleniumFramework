@@ -7,18 +7,13 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.tests.support.TestBaseUI;
-
-public class LoginPage extends TestBaseUI
+public class LoginPage extends BasePage
 {
 
-    public WebDriverWait wait;
-
-    public LoginPage()
+    public LoginPage(WebDriver driver)
     {
-        this.wait = new WebDriverWait(driver, 5);
+        super(driver);
     }
 
     public static final String DATASEEDING_DATA_FILENAME = "LoginPage";
