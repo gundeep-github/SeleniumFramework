@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [AutomationPractice for Hello Fresh]" guice-stage="DEVELOPMENT">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [AutomationPractice for Hello Fresh]">
   <listeners>
     <listener class-name="com.tests.ExtentReportListener.ExtentReporterNG"/>
   </listeners>
   <test thread-count="5" name="Hello Fresh Challenge(failed)">
     <classes>
+      <class name="com.testcases.SignUpTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="setupApplication"/>
+          <include name="closeApplication"/>
+          <include name="SignUpaNewUser" invocation-numbers="0"/>
+          <include name="takeScreenShotOnFailure"/>
+        </methods>
+      </class> <!-- com.testcases.SignUpTest -->
       <class name="com.testcases.WomenCheckoutOrderTest">
         <methods>
           <include name="setupApplication"/>
           <include name="closeApplication"/>
-          <include name="SignUpaNewUser" invocation-numbers="0"/>
+          <include name="SignUpaNewUser"/>
           <include name="beforeMethod"/>
           <include name="takeScreenShotOnFailure"/>
         </methods>
       </class> <!-- com.testcases.WomenCheckoutOrderTest -->
+      <class name="com.testcases.LoginTest">
+        <methods>
+          <include name="LoginExistingUser" invocation-numbers="0"/>
+          <include name="setupApplication"/>
+          <include name="closeApplication"/>
+          <include name="beforeMethod"/>
+          <include name="takeScreenShotOnFailure"/>
+        </methods>
+      </class> <!-- com.testcases.LoginTest -->
     </classes>
   </test> <!-- Hello Fresh Challenge(failed) -->
 </suite> <!-- Failed suite [AutomationPractice for Hello Fresh] -->

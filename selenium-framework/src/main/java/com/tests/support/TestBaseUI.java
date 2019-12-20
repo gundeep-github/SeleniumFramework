@@ -25,55 +25,64 @@ import org.testng.annotations.BeforeClass;
 import com.tests.constant.Constant;
 import com.tests.utils.UIHelper;
 
-public class TestBaseUI {
+public class TestBaseUI
+{
 
-	protected final static Logger logger = Logger.getLogger(TestBaseUI.class);
-	public static WebDriver driver;
-	public WebDriverWait wait;
-	public String dataFolderDP = "";
-	protected static Properties prop;
+    protected final static Logger logger = Logger.getLogger(TestBaseUI.class);
+    public static WebDriver driver;
+    public WebDriverWait wait;
+    public String dataFolderDP = "";
+    protected static Properties prop;
 
-	public TestBaseUI() {
-		try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
-		    logger.info("Reading Config File");
-			prop = new Properties();
-			prop.load(input);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
+    public TestBaseUI()
+    {
+        try (InputStream input = new FileInputStream("src/main/resources/config.properties"))
+        {
+            logger.info("Reading Config File");
+            prop = new Properties();
+            prop.load(input);
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
 
-	@BeforeClass
-	public void setupApplication() {
-		String browser = prop.getProperty("browser");
-		if (browser.equalsIgnoreCase("chrome")) {
-			logger.info("====Browser Session Started in Chrome====");
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver");
-			driver = new ChromeDriver();
-			driver.manage().window().maximize();
-			driver.get(prop.getProperty("BASEURL"));
-			logger.info("=====Application Started=====");
-		}
+    @BeforeClass
+    public void setupApplication()
+    {
+        String browser = prop.getProperty("browser");
+        if (browser.equalsIgnoreCase("chrome"))
+        {
+            logger.info("====Browser Session Started in Chrome====");
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriverv79.exe");
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+            driver.get(prop.getProperty("BASEURL"));
+            logger.info("=====Application Started=====");
+        }
 
-		else if (browser.equalsIgnoreCase("firefox")) {
-			logger.info("====Browser Session Started in firefox====");
-			System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
-			driver = new FirefoxDriver();
-			driver.manage().window().maximize();
-			driver.get(prop.getProperty("BASEURL"));
-			logger.info("=====Application Started=====");
-		}
+        else if (browser.equalsIgnoreCase("firefox"))
+        {
+            logger.info("====Browser Session Started in firefox====");
+            System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
+            driver = new FirefoxDriver();
+            driver.manage().window().maximize();
+            driver.get(prop.getProperty("BASEURL"));
+            logger.info("=====Application Started=====");
+        }
 
-	}
+    }
 
-	public String getDataPath(String dataseedingSchemaDataFileName, String dataFolder) {
-	    logger.info("Fetching the path of the CXV to read");
-		String absolutePath = Constant.DATAFILE_BASE_PATH.getValue() + Constant.FORWARD_SLASH.getValue() + dataFolder
-				+ Constant.FORWARD_SLASH.getValue() + dataseedingSchemaDataFileName + Constant.FORWARD_SLASH.getValue()
-				+ dataseedingSchemaDataFileName + Constant.CSV.getValue();
-		return absolutePath;
-	}
-	
+    public String getDataPath(String dataseedingSchemaDataFileName, String dataFolder)
+    {
+        logger.info("Fetching the path of the CXV to read");
+        String absolutePath = Constant.DATAFILE_BASE_PATH.getValue() + Constant.FORWARD_SLASH.getValue() + dataFolder
+            + Constant.FORWARD_SLASH.getValue() + dataseedingSchemaDataFileName + Constant.FORWARD_SLASH.getValue()
+            + dataseedingSchemaDataFileName + Constant.CSV.getValue();
+        return absolutePath;
+    }
+
     public static int readLines(String relativePath)
     {
         BufferedReader reader = null;
@@ -84,7 +93,7 @@ public class TestBaseUI {
         if ("".equals(relativePath))
         {
             String message = "relativePath can't be empty.";
-            //logger.info(message);
+            // logger.info(message);
         }
 
         try
@@ -100,25 +109,27 @@ public class TestBaseUI {
         }
         catch (Exception e)
         {
-           logger.error("IOException occured when get absolute path of " + relativePath, e);
+            logger.error("IOException occured when get absolute path of " + relativePath, e);
         }
         return count - 1;
     }
 
+    @AfterMethod
+    public void takeScreenShotOnFailure(ITestResult testResult) throws IOException
+    {
+        if (testResult.getStatus() == ITestResult.FAILURE)
+        {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("./failedScreenshots/" + testResult.getName() + "-"
+                + Arrays.toString(testResult.getParameters()) + ".jpg"));
+        }
+    }
 
-	@AfterMethod
-	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
-	    if (testResult.getStatus() == ITestResult.FAILURE) { 
-	        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
-	        FileUtils.copyFile(scrFile, new File("./failedScreenshots/" + testResult.getName() + "-"
-	                + Arrays.toString(testResult.getParameters()) +  ".jpg"));
-	    } 
-	}
+    @AfterClass
+    public void closeApplication()
+    {
+        driver.quit();
+        logger.info("=====Browser Session End=====");
 
-	@AfterClass
-	public void closeApplication() {
-		driver.quit();
-		logger.info("=====Browser Session End=====");
-
-	}
+    }
 }

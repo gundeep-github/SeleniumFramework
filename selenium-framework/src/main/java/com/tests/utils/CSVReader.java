@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.apache.log4j.Logger;
 
 
@@ -157,7 +154,7 @@ public class CSVReader {
 	 * @param row row number of csv file, start from 1
 	 * @return Map which its keyset contains headers and valueset contains given row's values.
 	 */
-	public static Map<String, Object> readPayloadTemplate(String fileName, int row)
+	public static Map<String, Object> readResourceCSV(String fileName, int row)
 	{
 		return convertMap( readCSV(fileName,row));
 	}
@@ -261,7 +258,7 @@ public class CSVReader {
 	 * @param idValue value to be find in "Key" column.
 	 * @return Map<String, Object> of the row content, <b>null</b> if not found.
 	 */
-	public static Map<String, Object> readPayloadTemplate(String fileName, String idValue)
+	public static Map<String, Object> readResourceCSV(String fileName, String idValue)
 	{ 
 		return convertMap( readCSV(fileName,idValue));
 	}
@@ -271,7 +268,7 @@ public class CSVReader {
 	 * @param fileName: String
 	 * @return List<Map<String,Object>> CSV data for all the rows
 	 */
-	public static List<Map<String, Object>> readPayloadTemplate(String fileName)
+	public static List<Map<String, Object>> readResourceCSV(String fileName)
 	{
 		List<Map<String, String>> temp = readCSV(fileName);
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
@@ -288,7 +285,7 @@ public class CSVReader {
 	 * @param endRow: int
 	 * @return List<Map<String,Object>> CSV data from startRow to endRow 
 	 */
-	public static List<Map<String, Object>> readPayloadTemplate(String fileName, int startRow, int endRow) 
+	public static List<Map<String, Object>> readResourceCSV(String fileName, int startRow, int endRow) 
 	{
 		List<Map<String, String>> temp = readCSV(fileName, startRow, endRow);
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();

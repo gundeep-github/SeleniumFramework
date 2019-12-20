@@ -3,6 +3,7 @@ package com.factory.pages;
 import java.util.Date;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,14 +37,6 @@ public class SignUpPage extends BasePage
     
     @FindBy(how=How.ID,using="SubmitCreate")
     WebElement click_on_SubmitCreate;
-    
-   // WebElement heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-    //assertEquals(heading.getText(), "MY ACCOUNT");
-    //assertEquals(driver.findElement(By.className("account")).getText(), name + " " + surname);
-    //assertTrue(driver.findElement(By.className("info-account")).getText().contains("Welcome to your account."));
-    //assertTrue(driver.findElement(By.className("logout")).isDisplayed());
-    //assertTrue(driver.getCurrentUrl().contains("controller=my-account"));
-    
  
     @FindBy(how=How.ID,using="id_gender2")
     @CacheLookup
@@ -124,7 +117,7 @@ public class SignUpPage extends BasePage
     {
         String timestamp = String.valueOf(new Date().getTime());
         String email = "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7)+randomemailincrement+ ".com";
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email_create")));
+        wait.until(ExpectedConditions.visibilityOf(create_email));
         create_email.sendKeys(email);
     }
     
@@ -137,17 +130,12 @@ public class SignUpPage extends BasePage
     public void selectid()
     {
         try {
-        	wait.until(ExpectedConditions.elementToBeClickable(gender_select));
-           gender_select.click();
+            //JavascriptExecutor executor = (JavascriptExecutor)driver;
+            //executor.executeScript("arguments[0].click();", gender_select);
+            wait.until(ExpectedConditions.invisibilityOf(gender_select));
+          gender_select.click();
         }
-        //wait.until(ExpectedConditions.visibilityOf(gender_select)).click();
-        
-        /*try {
-            if(gender_select.isDisplayed())
-            {
-                gender_select.click();
-            }
-        }*/
+       
             catch (NoSuchElementException ex) {
                 
 

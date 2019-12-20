@@ -19,36 +19,36 @@ public class WomenStorePage extends BasePage
     {
         super(driver);
     }
-    
-    public static final String DATASEEDING_DATA_FILENAME ="WomenStorePage";
+
+    public static final String DATASEEDING_DATA_FILENAME = "WomenStorePage";
 
     @FindBy(how = How.LINK_TEXT, using = "Women")
     WebElement goToWomenSelection;
-    
+
     @FindBy(how = How.XPATH, using = "//a[@title='Faded Short Sleeve T-shirts']/ancestor::li")
     WebElement fadedShortSleeve;
-    
+
     @FindBy(how = How.XPATH, using = "//a[@title='Blouse']/ancestor::li")
     WebElement blouse;
-    
-    @FindBy(how=How.ID,using="group_1")
+
+    @FindBy(how = How.ID, using = "group_1")
     WebElement size;
-    
-    @FindBy(how=How.NAME,using="Orange")
+
+    @FindBy(how = How.NAME, using = "Orange")
     WebElement orangeColor;
-    
-    @FindBy(how=How.NAME,using="Blue")
+
+    @FindBy(how = How.NAME, using = "Blue")
     WebElement blueColor;
-    
-    @FindBy(how=How.NAME,using="White")
+
+    @FindBy(how = How.NAME, using = "White")
     WebElement whiteColor;
-    
-    @FindBy(how=How.NAME,using="Black")
+
+    @FindBy(how = How.NAME, using = "Black")
     WebElement blackColor;
 
     @FindBy(how = How.NAME, using = "Submit")
     WebElement clickOnSubmit;
-    
+
     @FindBy(how = How.XPATH, using = "//*[@id='layer_cart']//a[@class and @title='Proceed to checkout']")
     WebElement checkoutButton;
 
@@ -57,7 +57,7 @@ public class WomenStorePage extends BasePage
 
     @FindBy(how = How.NAME, using = "processAddress")
     WebElement btn_process_address;
-    
+
     @FindBy(how = How.ID, using = "uniform-cgv")
     WebElement rbn_accept_term;
 
@@ -71,158 +71,161 @@ public class WomenStorePage extends BasePage
     WebElement btn_confirm_order;
 
     // verification
-    
-    @FindBy(how=How.CSS, using = "h1")
+
+    @FindBy(how = How.CSS, using = "h1")
     WebElement orderconfirmationheader;
-    
-    @FindBy(how=How.XPATH, using = "//li[@class='step_done step_done_last four']")
+
+    @FindBy(how = How.XPATH, using = "//li[@class='step_done step_done_last four']")
     WebElement shippingIsDisplayed;
-    
-    @FindBy(how=How.XPATH, using = "//li[@id='step_end' and @class='step_current last']")
+
+    @FindBy(how = How.XPATH, using = "//li[@id='step_end' and @class='step_current last']")
     WebElement paymentIsDisplayed;
-    
-    @FindBy(how=How.XPATH, using= "//*[@class='cheque-indent']/strong")
+
+    @FindBy(how = How.XPATH, using = "//*[@class='cheque-indent']/strong")
     WebElement orderCompletedCheck;
-    
-           
+
     public void clickonWomenoption()
     {
         wait.until(ExpectedConditions.visibilityOf(goToWomenSelection));
         goToWomenSelection.click();
     }
-    
+
     public void clickonDressOption(String dressName)
     {
-        
-        if(fadedShortSleeve.getText().contains(dressName))
+
+        if (fadedShortSleeve.getText().contains(dressName))
         {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView();", fadedShortSleeve); 
+            js.executeScript("arguments[0].scrollIntoView();", fadedShortSleeve);
+            wait.until(ExpectedConditions.visibilityOf(fadedShortSleeve));
             fadedShortSleeve.click();
         }
-        
-        else if(blouse.getText().contains(dressName))
+
+        else if (blouse.getText().contains(dressName))
         {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView();", blouse); 
+            js.executeScript("arguments[0].scrollIntoView();", blouse);
+            wait.until(ExpectedConditions.visibilityOf(blouse));
             blouse.click();
         }
-        
+
         else
         {
             Reporter.log("Check Dress Options");
         }
-        
+
     }
+
     public void clickonfadedShortSleeve()
     {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", fadedShortSleeve); 
+        js.executeScript("arguments[0].scrollIntoView();", fadedShortSleeve);
         fadedShortSleeve.click();
     }
-    
+
     public void selectSize(String sizeDetails)
     {
+        wait.until(ExpectedConditions.visibilityOf(size));
         Select select = new Select(size);
         select.selectByVisibleText(sizeDetails);
     }
-    
+
     public void selectColor(String color)
     {
-        if(color.equalsIgnoreCase("orange"))
+        if (color.equalsIgnoreCase("orange"))
         {
             orangeColor.click();
         }
-        
+
         else if (color.equalsIgnoreCase("blue"))
         {
             blueColor.click();
         }
-        
+
         else if (color.equalsIgnoreCase("white"))
         {
             whiteColor.click();
         }
-        
+
         else if (color.equalsIgnoreCase("black"))
         {
             blackColor.click();
         }
-        
+
         else
         {
             Reporter.log("Choose Correct color");
         }
     }
+
     public void click_on_Submit()
     {
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("arguments[0].scrollIntoView();", clickOnSubmit); 
+        // JavascriptExecutor js = (JavascriptExecutor) driver;
+        // js.executeScript("arguments[0].scrollIntoView();", clickOnSubmit);
         wait.until(ExpectedConditions.visibilityOf(clickOnSubmit));
         clickOnSubmit.click();
     }
-    
+
     public void clickoncheckOutButton()
     {
         wait.until(ExpectedConditions.visibilityOf(checkoutButton));
         checkoutButton.click();
     }
-    
+
     public void clickonproceedCheckoutButton()
     {
         wait.until(ExpectedConditions.visibilityOf(proceedCheckoutButton));
         proceedCheckoutButton.click();
     }
-    
+
     public void clickonbtn_process_address()
     {
         wait.until(ExpectedConditions.visibilityOf(btn_process_address));
         btn_process_address.click();
     }
-    
+
     public void clickonrbn_accept_term()
     {
         wait.until(ExpectedConditions.visibilityOf(rbn_accept_term));
         rbn_accept_term.click();
     }
-    
+
     public void clickonbtn_process_carrier()
     {
         wait.until(ExpectedConditions.visibilityOf(btn_process_carrier));
         btn_process_carrier.click();
     }
-    
+
     public void clickonpayByBankwire()
     {
         wait.until(ExpectedConditions.visibilityOf(payByBankwire));
         payByBankwire.click();
     }
-    
+
     public void clickonbtn_confirm_order()
     {
         wait.until(ExpectedConditions.visibilityOf(btn_confirm_order));
         btn_confirm_order.click();
     }
-    
+
     public String confirmHeader()
     {
         return orderconfirmationheader.getText();
     }
-    
+
     public boolean confirmShippingIsDisplayed()
     {
         return shippingIsDisplayed.isDisplayed();
     }
-    
+
     public boolean confirmpaymentIsDisplayed()
     {
         return paymentIsDisplayed.isDisplayed();
     }
-    
+
     public String confirmOrderIsComplete()
     {
         return orderCompletedCheck.getText();
     }
-    
-    
+
 }

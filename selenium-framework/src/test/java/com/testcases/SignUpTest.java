@@ -45,7 +45,7 @@ public class SignUpTest extends TestBaseUI
         System.out.println("step 1 "+count0);
         if (count0 > 0)
         {
-            List<Map<String, Object>> rows = CSVReader.readPayloadTemplate(absolutePathSU);
+            List<Map<String, Object>> rows = CSVReader.readResourceCSV(absolutePathSU);
             System.out.println("payload content---------");
             System.out.println(rows);
             for (int row = 0; row < rows.size(); row++)
